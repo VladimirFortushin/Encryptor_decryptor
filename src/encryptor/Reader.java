@@ -4,40 +4,32 @@ import exceptions.FilePathException;
 import exceptions.TextException;
 
 import java.io.*;
-import java.util.Scanner;
+
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 
 
 
 public class Reader {
 
-    private static String filePath;
-    private static File file;
+    private static Path filePath;
 
-
-
-    public static String readTextFromFile() throws IOException {
-        Scanner sc = new Scanner(System.in);
-
-        if((filePath = sc.nextLine()).isBlank()){
-            throw new FilePathException("File path is blank");
-        } else if (!(file = new File(filePath)).exists()) {
-            throw new FilePathException("File doesn't exist");
+    static void setFilePath(String path) throws FilePathException {
+        if(!Files.exists(Path.of(path))){
+            throw new FilePathException("File " + Path.of(path).getFileName() + " doesn't exist");
+        }else{
+            Reader.filePath = Path.of(path);
         }
+    }
 
 
-        String s = "";
-        String a = "";
-        try(BufferedReader br = new BufferedReader(new FileReader(filePath))){
+    public static String readTextFromFile() throws TextException, IOException {
 
-            if (br.ready()){
-                while ((a = br.readLine()) != null){
-                    s += a + "\n";
-                }
-            }
+        String s = Files.readString(filePath, StandardCharsets.UTF_8);
 
-        }
-
-        if(s.isBlank()){throw new TextException("The file is blank");}
+        if(s.isBlank()){throw new TextException("The text is blank");}
 
         return s;
     }
