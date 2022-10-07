@@ -4,8 +4,6 @@ public interface EncryptorDecryptor {
 
 
     LettersPack getLettersPack();
-    int getFinalKey(int key, String operation);
-
 
     default String encode(String text, int key, String operation){
 
@@ -15,6 +13,7 @@ public interface EncryptorDecryptor {
         char lastLetter = getLettersPack().getLastLetter();
         char firstLetterCapital = getLettersPack().getFirstLetterCapital();
         char lastLetterCapital = getLettersPack().getLastLetterCapital();
+
 
 
         String s = "";
@@ -48,6 +47,30 @@ public interface EncryptorDecryptor {
         }
 
         return s;
+    }
+
+    default int getFinalKey(int key, String operation) {
+        int lettersAmount = getLettersPack().getLettersAmount();
+        int finalKey = 0;
+
+        if(operation.equals("encrypt")){
+            if(key > 0){
+                finalKey = key % lettersAmount;
+            }else if(key < 0){
+                finalKey =  lettersAmount + key % lettersAmount;
+            }
+        }else if(operation.equals("decrypt")){
+            key *= -1;
+            if(key > 0){
+                finalKey = key % lettersAmount;
+            }else if(key < 0){
+                finalKey =  lettersAmount + key % lettersAmount;
+            }
+        }
+
+        return finalKey;
+
+
     }
 
 }

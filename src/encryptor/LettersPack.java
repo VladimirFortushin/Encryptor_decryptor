@@ -6,6 +6,7 @@ public class LettersPack {
     public LettersPack(String packName){
         if(packName.equals("CYR")){
 
+            setLettersAmount(32);
             setFirstLetter('à');
             setLastLetter('ÿ');
             setFirstLetterCapital('À');
@@ -13,6 +14,7 @@ public class LettersPack {
 
         }else if(packName.equals("LAT")){
 
+            setLettersAmount(26);
             setFirstLetter('a');
             setLastLetter('z');
             setFirstLetterCapital('A');
@@ -25,6 +27,14 @@ public class LettersPack {
     private char lastLetter;
     private char firstLetterCapital;
     private char lastLetterCapital;
+
+    private int lettersAmount;
+
+
+
+    public void setLettersAmount(int lettersAmount) {
+        this.lettersAmount = lettersAmount;
+    }
 
     private void setFirstLetter(char firstLetter) {
         this.firstLetter = firstLetter;
@@ -58,6 +68,10 @@ public class LettersPack {
     public char getLastLetterCapital() {
         return lastLetterCapital;
     }
+    public int getLettersAmount() {
+        return lettersAmount;
+    }
+
 
 
 
