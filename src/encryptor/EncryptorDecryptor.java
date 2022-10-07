@@ -8,7 +8,7 @@ public interface EncryptorDecryptor {
 
     default String encode(String text, int key, String operation){
 
-        int finalKey = EncryptorDecryptor.getFinalKey(key, operation);
+        int finalKey = getFinalKey(key, operation);
 
         char firstLetter = getLettersPack().getFirstLetter();
         char lastLetter = getLettersPack().getLastLetter();
@@ -49,7 +49,7 @@ public interface EncryptorDecryptor {
         return s;
     }
 
-    static int getFinalKey(int key, String operation){
+    default int getFinalKey(int key, String operation){
         int finalKey = 0;
 
         if(operation.equals("encrypt")){
