@@ -23,13 +23,13 @@ public class Main {
 
         if(operation.equals("encrypt")){
             String textToEncrypt = Reader.readTextFromFile();
-            String encryptedText = latin.encode(textToEncrypt, key, operation);
+            String encryptedText = cyrillic.encode(textToEncrypt, key, operation);
             Path encryptedFilePath = FileCreator.createNewFile(Path.of(filePath.replace(".txt", "(encrypted).txt")) + "");
             Writer.writeNewTextToNewFile(encryptedText, encryptedFilePath);
 
         }else if(operation.equals("decrypt")){
             String textToDecrypt = Reader.readTextFromFile();
-            String decryptedText = latin.encode(textToDecrypt, key, operation);
+            String decryptedText = cyrillic.encode(textToDecrypt, key, operation);
             Path decryptedFilePath = FileCreator.createNewFile(Path.of(filePath.replace("encrypted", "decrypted"))+"");
             Writer.writeNewTextToNewFile(decryptedText, decryptedFilePath);
 
