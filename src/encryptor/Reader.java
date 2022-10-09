@@ -25,7 +25,7 @@ public class Reader {
     }
 
 
-    public static String readTextFromFile() throws TextException, IOException {
+    public static String readTextFromFile() throws Exception {
 
         String s = Files.readString(filePath, StandardCharsets.UTF_8);
 

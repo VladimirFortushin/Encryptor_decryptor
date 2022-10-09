@@ -4,21 +4,21 @@ public class LettersPack {
 
 
     public LettersPack(String packName){
-        if(packName.equals("CYR")){
+        if(packName.equals("RUS")){
 
             setLettersAmount(32);
-            setFirstLetter('à');
-            setLastLetter('ÿ');
-            setFirstLetterCapital('À');
-            setLastLetterCapital('ß');
+            setFirstLetter('\u0430');
+            setLastLetter('\u044F');
+            setFirstLetterCapital('\u0410');
+            setLastLetterCapital('\u042F');
 
-        }else if(packName.equals("LAT")){
+        }else if(packName.equals("ENG")){
 
             setLettersAmount(26);
-            setFirstLetter('a');
-            setLastLetter('z');
-            setFirstLetterCapital('A');
-            setLastLetterCapital('Z');
+            setFirstLetter((char)97);
+            setLastLetter((char)122);
+            setFirstLetterCapital((char) 65);
+            setLastLetterCapital((char) 90);
         }
     }
 
@@ -32,7 +32,7 @@ public class LettersPack {
 
 
 
-    public void setLettersAmount(int lettersAmount) {
+    private void setLettersAmount(int lettersAmount) {
         this.lettersAmount = lettersAmount;
     }
 
