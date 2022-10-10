@@ -8,7 +8,6 @@ import java.nio.file.Path;
 
 public class Writer {
     public static void writeNewTextToNewFile(String text, Path fileName) throws IOException {
-        byte[] data = text.getBytes();
         Files.write(fileName, text.getBytes(StandardCharsets.UTF_8));
     }
 }

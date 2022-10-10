@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane prefHeight="500.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaFx.Controller">
+    <children>
+        <TextField fx:id="filePathFx" layoutX="217.0" layoutY="32.0" prefHeight="37.0" prefWidth="300.0" promptText="args[1]" />
+        <Button fx:id="start" layoutX="874.0" layoutY="32.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="112.0" text="Go">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Button>
+        <TextFlow layoutX="14.0" layoutY="100.0" prefHeight="386.0" prefWidth="460.0" />
+        <TextFlow layoutX="526.0" layoutY="100.0" prefHeight="386.0" prefWidth="460.0" />
+        <TextField fx:id="keyFx" layoutX="543.0" layoutY="32.0" prefHeight="37.0" prefWidth="300.0" promptText="args[2]" />
+      <ChoiceBox fx:id="operations" layoutX="32.0" layoutY="31.0" prefHeight="37.0" prefWidth="150.0" />
+      <Text layoutX="32.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Operation:" wrappingWidth="95.13671875" />
+    </children>
+</AnchorPane>
