@@ -4,8 +4,6 @@ import java.util.*;
 
 public interface Analyzer {
 
-
-
     LettersPack getLettersPack();
 
     default Map<Character, Integer> doLettersMap(String text){

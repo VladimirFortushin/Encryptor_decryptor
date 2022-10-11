@@ -16,7 +16,7 @@ public class JavaFx extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(JavaFx.class.getResource("sample.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1000, 500);
+        Scene scene = new Scene(fxmlLoader.load(), 1000, 600);
         stage.setTitle("EncoderDecoder");
         stage.setScene(scene);
         stage.show();

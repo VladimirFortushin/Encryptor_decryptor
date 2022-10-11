@@ -16,7 +16,7 @@ public class Reader {
 
     private static Path filePath;
 
-    static void setFilePath(String path) throws FilePathException {
+    public static void setFilePath(String path) throws FilePathException {
         if(!Files.exists(Path.of(path))){
             throw new FilePathException("File " + Path.of(path).getFileName() + " doesn't exist");
         }else{

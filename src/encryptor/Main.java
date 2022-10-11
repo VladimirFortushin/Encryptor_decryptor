@@ -53,7 +53,8 @@ public class Main {
             String decryptedText = eng.encode(textToDecrypt, key, operation);
             Path decryptedFilePath = FileCreator.createNewFile(Path.of(filePath.replace(".txt", "(decrypted key-"+ key +").txt")) + "");
             Writer.writeNewTextToNewFile(decryptedText, decryptedFilePath);
-        }
+
+        }else {throw new ConfigurationEmptyException("What's ur operation?");}
 
 
 
