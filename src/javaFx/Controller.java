@@ -34,6 +34,8 @@ public class Controller {
     private final Language eng = new Eng();
     private final Language rus = new Rus();
 
+    private Language language;
+
     @FXML
     private ResourceBundle resources;
 
@@ -110,13 +112,29 @@ public class Controller {
     private ImageView arrowLabel;
 
     @FXML
+    private ChoiceBox<String> languages;
+
+    @FXML
+    private Language setLanguage(){
+        if(languages.getSelectionModel().getSelectedItem().equals("Eng")){
+            return eng;
+        }else if(languages.getSelectionModel().getSelectedItem().equals("Rus")){
+            return rus;
+        }
+        return null;
+    }
+
+    @FXML
     void initialize() {
         operations.getItems().addAll("encrypt", "decrypt", "bruteForce");
+        languages.getItems().addAll("Eng", "Rus");
 
         start.setOnAction(e ->{
-            setLanguage(rus);
-
+            labelFileCreated.setText("");
+            bruteForceKey.setText("");
+            language = setLanguage();
             operation = setOperation();
+
             if (operation.equals("bruteForce")) {filePathInstance = getFilePathInstance();}else{key = setKey();}
 
             filePath = getFilePath();
@@ -130,10 +148,10 @@ public class Controller {
                         fillLeftArea(leftText);
                         setFilePath(filePathInstance);
                         rightText = readTextFromFile();
-                        key = getLanguage().getKey(leftText, rightText);
+                        key = language.getKey(leftText, rightText);
                         bruteForceKey.setText("Key (Brute Force): " + key);
                         operation = "decrypt";
-                        rightText = getLanguage().encode(leftText, key, operation);
+                        rightText = language.encode(leftText, key, operation);
                         fillRightArea(rightText);
                         resultFilePath = createNewFile(Path.of(filePath.replace(".txt", "(decrypted key-" + key + ").txt")) + "");
                         labelFileCreated.setText(resultFilePath.getFileName() + " created in your directory");
@@ -143,10 +161,10 @@ public class Controller {
                     }else{
                         leftText = getleftText();
                         rightText = getRightText();
-                        key = getLanguage().getKey(leftText, rightText);
+                        key = language.getKey(leftText, rightText);
                         bruteForceKey.setText("Key (Brute Force): " + key);
                         operation = "decrypt";
-                        rightText = getLanguage().encode(leftText, key, operation);
+                        rightText = language.encode(leftText, key, operation);
                         fillRightArea(rightText);
 
                     }
@@ -155,7 +173,7 @@ public class Controller {
                         setFilePath(filePath);
                         leftText = readTextFromFile();
                         fillLeftArea(leftText);
-                        rightText = getLanguage().encode(leftText, key, operation);
+                        rightText = language.encode(leftText, key, operation);
                         fillRightArea(rightText);
                             if(operation.equals("decrypt")){
                                 resultFilePath = createNewFile(Path.of(filePath.replace("encrypted", "decrypted"))+"");
@@ -167,7 +185,7 @@ public class Controller {
                     }else{
 
                             leftText = getleftText();
-                            rightText = getLanguage().encode(leftText, key, operation);
+                            rightText = language.encode(leftText, key, operation);
                             rightArea.setText(rightText);
 
                     }

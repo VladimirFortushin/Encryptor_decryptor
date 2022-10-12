@@ -13,14 +13,14 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaFx.Controller">
     <children>
-        <TextField fx:id="filePathFx" layoutX="217.0" layoutY="32.0" prefHeight="37.0" prefWidth="393.0" promptText="File Path (optional)" />
+        <TextField fx:id="filePathFx" layoutX="252.0" layoutY="32.0" prefHeight="37.0" prefWidth="358.0" promptText="File Path (optional)" />
         <Button fx:id="start" layoutX="874.0" layoutY="32.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="112.0" text="Go">
             <font>
                 <Font size="15.0" />
             </font>
         </Button>
         <TextField fx:id="keyFx" layoutX="627.0" layoutY="32.0" prefHeight="37.0" prefWidth="224.0" promptText="Key or File Path for Analysis" />
-      <ChoiceBox fx:id="operations" layoutX="32.0" layoutY="31.0" prefHeight="37.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="operations" layoutX="32.0" layoutY="31.0" prefHeight="37.0" prefWidth="95.0" />
       <Text layoutX="32.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Operation:" wrappingWidth="95.13671875" />
       <TextArea fx:id="rightArea" layoutX="536.0" layoutY="78.0" prefHeight="387.0" prefWidth="450.0" />
       <TextArea fx:id="leftArea" layoutX="32.0" layoutY="79.0" prefHeight="387.0" prefWidth="450.0" />
@@ -44,5 +44,7 @@
             <Image url="@images.png" />
          </image>
       </ImageView>
+      <ChoiceBox fx:id="languages" layoutX="139.0" layoutY="31.0" prefHeight="37.0" prefWidth="95.0" />
+      <Text layoutX="139.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Language:" wrappingWidth="71.13671875" />
     </children>
 </AnchorPane>
