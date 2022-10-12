@@ -3,7 +3,6 @@ package encryptor;
 
 
 import exceptions.ConfigurationEmptyException;
-import files.FileCreator;
 import language.Eng;
 import language.Language;
 import language.Rus;
@@ -11,19 +10,26 @@ import language.Rus;
 
 import java.nio.file.Path;
 
+import static encryptor.Reader.readTextFromFile;
+import static encryptor.Writer.writeNewTextToNewFile;
+import static files.FileCreator.createNewFile;
+import static language.Language.getLanguage;
+import static language.Language.setLanguage;
+
 public class Main {
 
     static String operation;
     static String filePath;
     static String filePathInstance;
     static Integer key;
+    static final Language eng = new Eng();
+    static final Language rus = new Rus();
 
 
     public static void main(String[] args) throws Exception {
-        if(args.length == 0){throw new ConfigurationEmptyException("args[...] is empty");}
+        setLanguage(eng);
 
-        Language eng = new Eng();
-        Language rus = new Rus();
+        if(args.length == 0){throw new ConfigurationEmptyException("args[...] is empty");}
 
         operation = args[0];
         filePath = args[1];
@@ -33,35 +39,30 @@ public class Main {
         Reader.setFilePath(filePath);
 
         if(operation.equals("encrypt")){
-            String textToEncrypt = Reader.readTextFromFile();
-            String encryptedText = eng.encode(textToEncrypt, key, operation);
-            Path encryptedFilePath = FileCreator.createNewFile(Path.of(filePath.replace(".txt", "(encrypted).txt")) + "");
-            Writer.writeNewTextToNewFile(encryptedText, encryptedFilePath);
+            String textToEncrypt = readTextFromFile();
+            String encryptedText = getLanguage().encode(textToEncrypt, key, operation);
+            Path encryptedFilePath = createNewFile(Path.of(filePath.replace(".txt", "(encrypted).txt")) + "");
+            writeNewTextToNewFile(encryptedText, encryptedFilePath);
 
         }else if(operation.equals("decrypt")){
-            String textToDecrypt = Reader.readTextFromFile();
-            String decryptedText = eng.encode(textToDecrypt, key, operation);
-            Path decryptedFilePath = FileCreator.createNewFile(Path.of(filePath.replace("encrypted", "decrypted"))+"");
-            Writer.writeNewTextToNewFile(decryptedText, decryptedFilePath);
+            String textToDecrypt = readTextFromFile();
+            String decryptedText = getLanguage().encode(textToDecrypt, key, operation);
+            Path decryptedFilePath = createNewFile(Path.of(filePath.replace("encrypted", "decrypted"))+"");
+            writeNewTextToNewFile(decryptedText, decryptedFilePath);
 
         }else if(operation.equals("bruteForce")){
-            String textToDecrypt = Reader.readTextFromFile();
+            String textToDecrypt = readTextFromFile();
             Reader.setFilePath(filePathInstance);
-            String instanceForAnalysis = Reader.readTextFromFile();
-            key = eng.getKey(textToDecrypt, instanceForAnalysis);
+            String instanceForAnalysis = readTextFromFile();
+            key = getLanguage().getKey(textToDecrypt, instanceForAnalysis);
             operation = "decrypt";
-            String decryptedText = eng.encode(textToDecrypt, key, operation);
-            Path decryptedFilePath = FileCreator.createNewFile(Path.of(filePath.replace(".txt", "(decrypted key-"+ key +").txt")) + "");
-            Writer.writeNewTextToNewFile(decryptedText, decryptedFilePath);
+            String decryptedText = getLanguage().encode(textToDecrypt, key, operation);
+            Path decryptedFilePath = createNewFile(Path.of(filePath.replace(".txt", "(decrypted key-"+ key +").txt")) + "");
+            writeNewTextToNewFile(decryptedText, decryptedFilePath);
 
         }else {throw new ConfigurationEmptyException("What's ur operation?");}
 
-
-
-
-
-
-
     }
+
 
 }
